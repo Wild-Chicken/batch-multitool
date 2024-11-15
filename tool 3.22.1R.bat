@@ -26,7 +26,7 @@
 
 setlocal enabledelayedexpansion
 :start
-set ver=3.22.1A
+set ver=3.22.1R
 set out=' -OutFile '
 set site=http://chicken.bulletinbay.com
 set pc=powershell -Command
