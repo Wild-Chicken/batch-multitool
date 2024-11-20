@@ -40,7 +40,7 @@ set ga=goto askexit
 set kl=taskkill /f
 set ssec=%site%/secrect
 set /p name=<%programdata%\script\name.txt
-title tool 3.22.1A ^| by chicken
+title tool 3.22.1R ^| by chicken
 :: if you want to know what something does, dm me using my socials in #17!
 if not exist %programdata%\script (
 	md %programdata%\script
